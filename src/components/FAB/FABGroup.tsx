@@ -22,6 +22,7 @@ import type { IconSource } from '../Icon';
 import Text from '../Typography/Text';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const AnimatedView = Animated.createAnimatedComponent(View);
 
 export type Props = {
   /**
@@ -357,7 +358,10 @@ const FABGroup = ({
           },
         ]}
       />
-      <View pointerEvents="box-none" style={styles.safeArea}>
+      <AnimatedView pointerEvents="box-none" style={[styles.safeArea, {backgroundColor: "#D2C8F3",
+            opacity: backdropOpacity,
+
+      paddingTop: 40, justifyContent: "flex-end", width: "100%"}]}>
         <View pointerEvents={open ? 'box-none' : 'none'}>
           {actions.map((it, i) => {
             const labelTextStyle = {
@@ -481,7 +485,7 @@ const FABGroup = ({
           variant={variant}
           rippleColor={rippleColor}
         />
-      </View>
+      </AnimatedView>
     </View>
   );
 };
@@ -503,7 +507,6 @@ const styles = StyleSheet.create({
   },
   fab: {
     marginHorizontal: 16,
-    marginBottom: 16,
     marginTop: 0,
   },
   backdrop: {
